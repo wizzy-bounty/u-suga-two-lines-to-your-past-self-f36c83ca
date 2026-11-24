@@ -18,8 +18,13 @@ ENTRY_TEXT = (
 
 OUTPUT_PATH = Path("/output/entry.txt")
 
+# The competition gate accepts entry text of 1 to 280 characters.
+MAX_ENTRY_CHARS = 280
+
 
 def main() -> None:
+    if not 1 <= len(ENTRY_TEXT) <= MAX_ENTRY_CHARS:
+        raise ValueError(f"entry text is {len(ENTRY_TEXT)} characters, outside 1-{MAX_ENTRY_CHARS}")
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(ENTRY_TEXT, encoding="utf-8")
 
